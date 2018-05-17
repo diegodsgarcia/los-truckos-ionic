@@ -1,3 +1,29 @@
 page-settings {
-
+  .scroll-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .settings {
+    &__avatar {
+      margin: 0;
+      img {
+        display: block;
+        width: 150px;
+        height: 150px;
+        border-radius: 100%;
+        margin: 0 auto;
+      }
+    }
+    &__title, &__datas {
+      text-align: center;
+    }
+    &__title {
+      font-size: 1.8em;
+      font-weight: bold;
+    }
+    &__datas {
+      font-size: 1em;
+    }
+  }
 }

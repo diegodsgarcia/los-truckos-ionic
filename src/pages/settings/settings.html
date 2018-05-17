@@ -5,5 +5,11 @@
 </ion-header>
 
 <ion-content padding>
-
+  <div class="settings">
+    <figure class="settings__avatar">
+      <img [src]="user.image" />
+    </figure>
+    <p class="settings__title">{{ user.name }}</p>
+    <p class="settings__datas">{{ user.email }}</p>
+  </div>
 </ion-content>

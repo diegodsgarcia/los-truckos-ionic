@@ -16,8 +16,6 @@ export class MapPage {
       new Foodtruck(new Date().getTime(), "Ipsum", "ipsum@gmail.com", "img.png", location),
       new Foodtruck(new Date().getTime(), "Dolor", "dolor@gmail.com", "img.png", location),
     ];
-
-    console.log(this.foodtrucks);
   }
 
   ionViewDidLoad() {
