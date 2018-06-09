@@ -47,7 +47,7 @@ import { UserProvider } from '../providers/user'
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    UserProvider
+    UserProvider,
   ]
 })
 

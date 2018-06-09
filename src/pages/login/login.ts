@@ -1,7 +1,7 @@
 import { Component } from '@angular/core'
-import { IonicPage, NavController, NavParams } from 'ionic-angular'
+import { Platform, NavController } from 'ionic-angular'
 import { AngularFireAuth } from 'angularfire2/auth'
-import * as firebase from 'firebase/app'
+import * as firebase from 'firebase'
 
 @Component({
   selector: 'page-login',
@@ -12,8 +12,8 @@ export class LoginPage {
 
   constructor(
     private afAuth: AngularFireAuth,
+    public platform: Platform,
     public navCtrl: NavController,
-    public navParams: NavParams,
   ) {}
 
   ionViewDidLoad() {
@@ -21,21 +21,19 @@ export class LoginPage {
   }
 
   login() {
-    // this.signInWithGoogle().then((datas) => {
-    //   console.log(datas)
-    // }).catch((error) => {
-    //   console.log(error)
-    // })
+    this.signInWithGoogle()
   }
 
   signInWithGoogle() {
     const provider = new firebase.auth.GoogleAuthProvider()
 
-    if (!(<any>window).cordova) {
-      return this.afAuth.auth.signInWithPopup(provider)
-    } else {
+    if (this.platform.is('cordova')) {
       return this.afAuth.auth.signInWithRedirect(provider)
         .then(() => this.afAuth.auth.getRedirectResult())
+
+    } else {
+      return this.afAuth.auth.signInWithPopup(provider)
+
     }
   }
 
