@@ -1,4 +1,4 @@
-import { Location } from './index';
+import { Location } from './index'
 
 export class Foodtruck {
   constructor(

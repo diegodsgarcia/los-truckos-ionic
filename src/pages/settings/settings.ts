@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
-import { User } from '../../models/user';
+import { Component } from '@angular/core'
+import { NavController, NavParams } from 'ionic-angular'
+import { User } from '../../models/user'
 
 @Component({
   selector: 'page-settings',
@@ -8,12 +8,12 @@ import { User } from '../../models/user';
 })
 export class SettingsPage {
 
-  private user: User;
+  private user: User
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.user = new User(
       'Diego Garcia',
       'diego.ds.garcia@gmail.com', 'https://ionicframework.com/img/meta/ionic-framework-og.png'
-    );
+    )
   }
 
   ionViewDidLoad() {

@@ -1,18 +1,18 @@
-import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+import { Component } from '@angular/core'
+import { Platform } from 'ionic-angular'
+import { StatusBar } from '@ionic-native/status-bar'
+import { SplashScreen } from '@ionic-native/splash-screen'
 
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuth } from 'angularfire2/auth'
 
-import { TabsPage } from '../pages/tabs/tabs';
-import { LoginPage } from '../pages/login/login';
+import { TabsPage } from '../pages/tabs/tabs'
+import { LoginPage } from '../pages/login/login'
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage: any = LoginPage;
+  rootPage: any = LoginPage
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -22,8 +22,8 @@ export class MyApp {
     ) {
 
     platform.ready().then(() => {
-      statusBar.styleDefault();
-      splashScreen.hide();
+      statusBar.styleDefault()
+      splashScreen.hide()
     });
 
   }
@@ -31,11 +31,11 @@ export class MyApp {
   checkIfIsAuthenticate() {
     this.afAuth.authState.subscribe((isAuth) => {
       if(isAuth) {
-        this.rootPage = TabsPage;
+        this.rootPage = TabsPage
       } else {
-        this.rootPage = LoginPage;
+        this.rootPage = LoginPage
       }
-    });
+    })
   }
 }
 

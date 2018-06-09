@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component } from '@angular/core'
+import { NavController, NavParams } from 'ionic-angular'
 
-import { MapPage } from '../map/map';
-import { SettingsPage } from '../settings/settings';
+import { MapPage } from '../map/map'
+import { SettingsPage } from '../settings/settings'
 
 @Component({
   selector: 'page-tabs',
@@ -10,8 +10,8 @@ import { SettingsPage } from '../settings/settings';
 })
 export class TabsPage {
 
-  tabMap: any = MapPage;
-  tabSettings: any = SettingsPage;
+  tabMap: any = MapPage
+  tabSettings: any = SettingsPage
 
   constructor(
     public navCtrl: NavController,
