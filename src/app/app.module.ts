@@ -8,7 +8,10 @@ import { StatusBar } from '@ionic-native/status-bar'
 import { AngularFireModule } from 'angularfire2'
 import { AngularFireDatabaseModule } from 'angularfire2/database'
 import { AngularFireAuthModule } from 'angularfire2/auth'
-import { firebaseConfig } from '../environments/environment'
+import { firebaseConfig, mapsConfig } from '../environments/environment'
+
+// Maps
+import { AgmCoreModule } from '@agm/core'
 
 // Pages
 import { MyApp } from './app.component'
@@ -31,6 +34,7 @@ import { UserProvider } from '../providers/user'
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    AgmCoreModule.forRoot(mapsConfig),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,

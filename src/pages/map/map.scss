@@ -1,3 +1,10 @@
-page-home {
-
+page-map {
+  ion-searchbar {
+    position: absolute;
+    top: 10px;
+    z-index: 2;
+  }
+  agm-map {
+    height: 100vh;
+  }
 }

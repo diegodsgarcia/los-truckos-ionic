@@ -1,13 +1,22 @@
 page-login {
+
   .content {
-    background-color: #9ff4d2;
+    background-color: map-get($colors, primary);
   }
-  // .scroll-content {
-  //   display: flex;
-  // }
+
+  .button-ios-google, .button-md-google {
+    color: map-get($colors, primary);
+  }
+
   img {
-    display: block;
-    max-width: 320px;
-    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 250px;
+  }
+
+  ion-icon {
+    margin-left: 10px;
   }
 }

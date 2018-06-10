@@ -7,7 +7,10 @@ import { Foodtruck, Location } from '../../models/index'
   templateUrl: 'map.html'
 })
 export class MapPage {
-  private foodtrucks: Foodtruck[]
+  foodtrucks: Foodtruck[]
+  latitude = 51.678418
+  longitude = 7.809007
+
 
   constructor(public navCtrl: NavController) {
     const location = new Location(1, 1, '7º Andar, Av. Paulista, 1106 - Bela Vista, São Paulo - SP, 01311-000')
@@ -19,6 +22,11 @@ export class MapPage {
   }
 
   ionViewDidLoad() {
+  }
+
+  onChoseLocation(event) {
+    this.latitude = event.coords.lat
+    this.longitude = event.coords.lng
   }
 
 }
