@@ -1,7 +1,7 @@
 export class Location {
   constructor(
-    public lat: number,
-    public lng: number,
+    public latitude: number,
+    public longitude: number,
     public address: string,
   ) {}
 }

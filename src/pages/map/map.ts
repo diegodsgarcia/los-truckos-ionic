@@ -16,18 +16,18 @@ export class MapPage {
 
   constructor(public navCtrl: NavController, public elementRef: ElementRef) {
 
-    const location = new Location(1, 1, '7º Andar, Av. Paulista, 1106 - Bela Vista, São Paulo - SP, 01311-000')
+    const location = new Location(51.678418, 7.809007, '7º Andar, Av. Paulista, 1106 - Bela Vista, São Paulo - SP, 01311-000')
     this.foodtrucks = [new Foodtruck(
       "Name",
       "Owner",
       false,
       "Speciality",
       "Logo",
+      location,
       "Phone",
       "Email",
       "Facebook",
-      "Instagram",
-      location
+      "Instagram"
     )];
   }
 
@@ -51,8 +51,6 @@ export class MapPage {
   }
 
   onChoseLocation(event) {
-    this.latitude = event.coords.lat
-    this.longitude = event.coords.lng
   }
 
   openDescription(foodtruck) {

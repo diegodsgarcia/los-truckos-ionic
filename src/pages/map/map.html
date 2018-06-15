@@ -2,7 +2,7 @@
 <ion-content>
   <ion-searchbar #searchbar class="searchbar" (click)="openList(searchbar)"></ion-searchbar>
   <agm-map [latitude]="latitude" [longitude]="longitude" (mapClick)="onChoseLocation($event)">
-    <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+    <agm-marker *ngFor="let foodtruck of foodtrucks" [latitude]="foodtruck.latitude" [longitude]="foodtruck.longitude"></agm-marker>
   </agm-map>
 
   <div class="list">
@@ -14,9 +14,10 @@
       </figure>
       <div class="list__description">
         <h1>{{ foodtruck.name }}</h1>
+        <p>Especialidade: {{ foodtruck.speciality }}</p>
         <p>Proximidade: {{ foodtruck.distance }}</p>
-        <p *ngIf p="foodtruck.isOpen">Aberto</p>
-        <p *ngIf p="!foodtruck.isOpen">Fechado</p>
+        <p *ngIf="foodtruck.isOpen">Aberto</p>
+        <p *ngIf="!foodtruck.isOpen">Fechado</p>
       </div>
     </div>
 

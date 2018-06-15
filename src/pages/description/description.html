@@ -1,12 +1,35 @@
 <ion-header>
-
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>{{ foodtruck.name }}</ion-title>
   </ion-navbar>
-
 </ion-header>
 
+<ion-content>
+  <agm-map [latitude]="latitude" [longitude]="longitude">
+    <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+  </agm-map>
 
-<ion-content padding>
+  <div class="description">
+    <figure class="description__map">
+      <img [src]="foodtruck.logo">
+    </figure>
+    <div class="description__texts">
+      <h1>{{ title }}</h1>
+      <p>Dono: {{ foodtruck.owner }}</p>
+      <p>Especialidade: {{ foodtruck.speciality }}</p>
+      <p>Distancia: {{ foodtruck.distance }}</p>
+      <p>Aberto:
+        <span *ngIf="foodtruck.isOpen">Sim</span>
+        <span *ngIf="!foodtruck.isOpen">Não</span>
+      </p>
+      <div class="description__social">
+        <ion-icon name="phone"></ion-icon>
+        <ion-icon name="email"></ion-icon>
+        <ion-icon name="facebook"></ion-icon>
+        <ion-icon name="instagram"></ion-icon>
+      </div>
+      <button ion-button full class="description__find">Traçar rota</button>
+    </div>
+  </div>
 
 </ion-content>

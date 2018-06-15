@@ -7,11 +7,11 @@ export class Foodtruck {
     public isOpen: boolean,
     public speciality: string,
     public logo: string,
+    public location: Location,
     public phone?: string,
     public email?: string,
     public facebook?: string,
     public instagram?: string,
-    public location?: Location,
   ) {}
 
   get distance() {

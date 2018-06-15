@@ -9,9 +9,13 @@ import { Foodtruck } from '../../models';
 export class DescriptionPage {
 
   foodtruck: Foodtruck
+  latitude: number
+  longitude: number
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.foodtruck = this.navParams.get('foodtruck')
+    this.latitude = this.foodtruck.location.latitude
+    this.longitude = this.foodtruck.location.longitude
   }
 
   ionViewDidLoad() {
