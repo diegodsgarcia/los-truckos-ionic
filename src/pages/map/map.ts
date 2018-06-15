@@ -1,6 +1,7 @@
 import { Component, ElementRef } from '@angular/core'
 import { NavController } from 'ionic-angular'
 import { Foodtruck, Location } from '../../models/index'
+import { DescriptionPage } from '../description/description';
 
 @Component({
   selector: 'page-map',
@@ -13,16 +14,21 @@ export class MapPage {
   list: HTMLElement
   searchbar: HTMLElement
 
-
-
   constructor(public navCtrl: NavController, public elementRef: ElementRef) {
 
     const location = new Location(1, 1, '7º Andar, Av. Paulista, 1106 - Bela Vista, São Paulo - SP, 01311-000')
-    this.foodtrucks = [
-      new Foodtruck(new Date().getTime(), "Lorem", "lorem@gmail.com", "img.png", location),
-      new Foodtruck(new Date().getTime(), "Ipsum", "ipsum@gmail.com", "img.png", location),
-      new Foodtruck(new Date().getTime(), "Dolor", "dolor@gmail.com", "img.png", location),
-    ];
+    this.foodtrucks = [new Foodtruck(
+      "Name",
+      "Owner",
+      false,
+      "Speciality",
+      "Logo",
+      "Phone",
+      "Email",
+      "Facebook",
+      "Instagram",
+      location
+    )];
   }
 
   ionViewDidLoad() {
@@ -47,6 +53,10 @@ export class MapPage {
   onChoseLocation(event) {
     this.latitude = event.coords.lat
     this.longitude = event.coords.lng
+  }
+
+  openDescription(foodtruck) {
+    this.navCtrl.push(DescriptionPage, { foodtruck })
   }
 
 }

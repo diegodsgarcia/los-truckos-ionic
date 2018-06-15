@@ -8,25 +8,15 @@
   <div class="list">
     <button class="list__close" (click)="closeList()"></button>
 
-    <div class="list__item">
+    <div *ngFor="let foodtruck of foodtrucks" (click)="openDescription(foodtruck)" class="list__item">
       <figure>
-        <img src="" alt="">
+        <img [src]="foodtruck.logo" [alt]="foodtruck.name" [title]="foodtruck.name">
       </figure>
       <div class="list__description">
-        <h1>Titulo</h1>
-        <p>Proximidade: 12km</p>
-        <p>Aberto</p>
-      </div>
-    </div>
-
-    <div class="list__item">
-      <figure>
-        <img src="" alt="">
-      </figure>
-      <div class="list__description">
-        <h1>Titulo</h1>
-        <p>Proximidade: 12km</p>
-        <p>Aberto</p>
+        <h1>{{ foodtruck.name }}</h1>
+        <p>Proximidade: {{ foodtruck.distance }}</p>
+        <p *ngIf p="foodtruck.isOpen">Aberto</p>
+        <p *ngIf p="!foodtruck.isOpen">Fechado</p>
       </div>
     </div>
 

@@ -4,7 +4,7 @@ export class Foodtruck {
   constructor(
     public name: string,
     public owner: string,
-    public isOpen: string,
+    public isOpen: boolean,
     public speciality: string,
     public logo: string,
     public phone?: string,
@@ -13,4 +13,8 @@ export class Foodtruck {
     public instagram?: string,
     public location?: Location,
   ) {}
+
+  get distance() {
+    return 1.2
+  }
 }
