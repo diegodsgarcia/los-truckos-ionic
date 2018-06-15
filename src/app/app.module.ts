@@ -22,6 +22,7 @@ import { SettingsPage } from '../pages/settings/settings'
 
 // Providers
 import { UserProvider } from '../providers/user'
+import { DescriptionPage } from '../pages/description/description';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { UserProvider } from '../providers/user'
     LoginPage,
     TabsPage,
     MapPage,
+    DescriptionPage,
     SettingsPage,
   ],
   imports: [
@@ -44,6 +46,7 @@ import { UserProvider } from '../providers/user'
     MyApp,
     TabsPage,
     LoginPage,
+    DescriptionPage,
     MapPage,
     SettingsPage,
   ],
