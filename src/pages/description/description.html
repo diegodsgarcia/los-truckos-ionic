@@ -5,19 +5,20 @@
 </ion-header>
 
 <ion-content>
-  <agm-map [latitude]="latitude" [longitude]="longitude">
+  <agm-map [zoom]="14" [latitude]="latitude" [longitude]="longitude">
     <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
   </agm-map>
 
   <div class="description">
-    <figure class="description__map">
+    <figure class="description__logo">
       <img [src]="foodtruck.logo">
     </figure>
     <div class="description__texts">
-      <h1>{{ title }}</h1>
+      <h1>{{ foodtruck.name }}</h1>
       <p>Dono: {{ foodtruck.owner }}</p>
       <p>Especialidade: {{ foodtruck.speciality }}</p>
-      <p>Distancia: {{ foodtruck.distance }}</p>
+      <p *ngIf="foodtruck.location.distance == 0"><span>Proximidade:</span> Menos de 1 km</p>
+      <p *ngIf="foodtruck.location.distance > 0"><span>Proximidade:</span> {{ foodtruck.location.distance }} km</p>
       <p>Aberto:
         <span *ngIf="foodtruck.isOpen">Sim</span>
         <span *ngIf="!foodtruck.isOpen">Não</span>
@@ -28,8 +29,12 @@
         <ion-icon name="facebook"></ion-icon>
         <ion-icon name="instagram"></ion-icon>
       </div>
-      <button ion-button full class="description__find">Traçar rota</button>
     </div>
   </div>
+
+  <div class="description__find">
+    <button ion-button full>Traçar rota</button>
+  </div>
+
 
 </ion-content>

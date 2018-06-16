@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core'
 import { Geolocation } from '@ionic-native/geolocation'
 import { AngularFireAuth } from 'angularfire2/auth'
-import { NativeGeocoder } from '@ionic-native/native-geocoder'
 
 import { Location, User } from '../models'
 
@@ -12,7 +11,6 @@ export class UserProvider {
   constructor(
     private afAuth: AngularFireAuth,
     private geolocation: Geolocation,
-    private nativeGeocoder: NativeGeocoder,
   ) {}
 
   get user() {
@@ -23,20 +21,25 @@ export class UserProvider {
     )
   }
 
-  async getLocation() {
-    const geolocation = await this.geolocation.getCurrentPosition()
-    const location = await this.getReverseGeocode(geolocation.coords.latitude, geolocation.coords.longitude)
-    return location
+   getLocation(): Promise<Location> {
+     return new Promise(resolve => {
+      this.geolocation.getCurrentPosition().then(pos => {
+        resolve(new Location(pos.coords.latitude, pos.coords.longitude))
+      })
+     })
+    // const geolocation = await this.geolocation.getCurrentPosition()
+    // const location = await this.getReverseGeocode(geolocation.coords.latitude, geolocation.coords.longitude)
+    // return location
   }
 
-  getReverseGeocode(latitude, longitude) {
-    return new Promise((resolve, reject) => {
-      this.nativeGeocoder.reverseGeocode(latitude, longitude)
-        .then(result => new Location(latitude, longitude, JSON.stringify(result)))
-        .catch(error => new Location(latitude, longitude, error))
-    })
+  // getReverseGeocode(latitude, longitude) {
+  //   return new Promise((resolve, reject) => {
+  //     this.nativeGeocoder.reverseGeocode(latitude, longitude)
+  //       .then(result => new Location(latitude, longitude, JSON.stringify(result)))
+  //       .catch(error => new Location(latitude, longitude, error))
+  //   })
 
-  }
+  // }
 
   signOut() {
     this.afAuth.auth.signOut()

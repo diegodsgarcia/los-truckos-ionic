@@ -7,7 +7,6 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular'
 import { SplashScreen } from '@ionic-native/splash-screen'
 import { StatusBar } from '@ionic-native/status-bar'
 import { Geolocation } from '@ionic-native/geolocation'
-import { NativeGeocoder } from '@ionic-native/native-geocoder'
 
 // Firebase
 import { AngularFireModule } from 'angularfire2'
@@ -19,6 +18,7 @@ import { firebaseConfig, mapsConfig } from '../environments/environment'
 import { AgmCoreModule } from '@agm/core'
 
 // Pages
+import { DescriptionPage } from '../pages/description/description'
 import { MyApp } from './app.component'
 import { TabsPage } from '../pages/tabs/tabs'
 import { LoginPage } from '../pages/login/login'
@@ -26,8 +26,10 @@ import { MapPage } from '../pages/map/map'
 import { SettingsPage } from '../pages/settings/settings'
 
 // Providers
-import { UserProvider } from '../providers/user'
-import { DescriptionPage } from '../pages/description/description';
+import { UserProvider } from '../providers'
+import { FoodtruckProvider } from '../providers'
+
+
 
 @NgModule({
   declarations: [
@@ -57,8 +59,8 @@ import { DescriptionPage } from '../pages/description/description';
     SettingsPage,
   ],
   providers: [
+    FoodtruckProvider,
     Geolocation,
-    NativeGeocoder,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},

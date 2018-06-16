@@ -62,14 +62,35 @@ page-map {
   border-bottom: 1px solid #ccc;
   display: flex;
   width: 100%;
-  h1 {
-    margin-top: 20px;
-  }
+  padding: 20px 0;
 }
 
 .list__image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 20px;
   img {
-    max-height: 150px;
+    max-width: 80px;
+    max-height: 80px;
   }
 }
 
+.list__description {
+  h1 {
+    margin-top: 0;
+  }
+  p {
+    margin: 5px 0;
+    color: #696969;
+  }
+  span {
+    color: #000000;
+  }
+  &--open {
+    color: #008000
+  }
+  &--close {
+    color: red;
+  }
+}

@@ -1,12 +1,11 @@
 import { Component, ElementRef } from '@angular/core'
 import { NavController } from 'ionic-angular'
-import { AngularFireDatabase } from 'angularfire2/database'
 
-import { Foodtruck, Location } from '../../models/index'
+import { FoodtruckProvider, UserProvider } from '../../providers'
+import { Foodtruck, Location } from '../../models'
 import { DescriptionPage } from '../description/description'
 
 import { Observable } from 'rxjs'
-import { map } from 'rxjs/operators'
 
 @Component({
   selector: 'page-map',
@@ -14,49 +13,36 @@ import { map } from 'rxjs/operators'
 })
 export class MapPage {
   foodtrucks: Observable<Foodtruck[]>
-  latitude: number = 51.678418
-  longitude: number = 7.809007
+  currentLocation: Promise<Location>
   list: HTMLElement
   searchbar: HTMLElement
 
   constructor(
-    private db: AngularFireDatabase,
+    private foodtruckProvider: FoodtruckProvider,
+    private userProvider: UserProvider,
     public navCtrl: NavController,
     public elementRef: ElementRef) {
 
-    this.foodtrucks = this.getFoodtrucks()
-  }
+    this.currentLocation = this.userProvider.getLocation()
 
-  private getFoodtrucks() {
-    const location = new Location(51.678418, 7.809007, '7º Andar, Av. Paulista, 1106 - Bela Vista, São Paulo - SP, 01311-000')
-
-    const datas: Observable<any[]> = this.db.list('foodtrucks').valueChanges()
-
-    datas.pipe(
-      map(foodtrucks =>
-        foodtrucks.map(foodtruck => new Foodtruck(
-          foodtruck.name,
-          foodtruck.owner,
-          foodtruck.isOpen,
-          foodtruck.speciality,
-          foodtruck.logo,
-          location,
-          foodtruck.phone,
-          foodtruck.email,
-          foodtruck.facebook,
-          foodtruck.instagram)
-        )
-      )
-    )
-
-    return datas
-
+    this.currentLocation.then(location => {
+      this.foodtrucks = this.foodtruckProvider.getFoodtrucks(location)
+    })
   }
 
   ionViewDidLoad() {
     this.list = this.elementRef.nativeElement.querySelector('.list')
     this.searchbar = this.elementRef.nativeElement.querySelector('.searchbar')
   }
+
+  // calculateLocation(foodtruck: Foodtruck) {
+  //   return new Promise(resolve => {
+  //     this.userProvider.getLocation().then(location => {
+  //       const calculate = this.foodtruckProvider.getDistanceOfFoodtruck(foodtruck, location)
+  //       resolve(calculate)
+  //     })
+  //   })
+  // }
 
   openList() {
     if (!this.list.classList.contains('list--active')) {
@@ -76,6 +62,7 @@ export class MapPage {
   }
 
   openDescription(foodtruck) {
+    console.log(foodtruck)
     this.navCtrl.push(DescriptionPage, { foodtruck })
   }
 

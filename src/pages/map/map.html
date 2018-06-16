@@ -1,8 +1,8 @@
 
 <ion-content>
   <ion-searchbar #searchbar class="searchbar" (click)="openList(searchbar)"></ion-searchbar>
-  <agm-map [latitude]="latitude" [longitude]="longitude" (mapClick)="onChoseLocation($event)">
-    <agm-marker *ngFor="let foodtruck of foodtrucks | async" [latitude]="foodtruck.latitude" [longitude]="foodtruck.longitude"></agm-marker>
+  <agm-map [zoom]="14" [latitude]="(currentLocation | async)?.latitude" [longitude]="(currentLocation | async)?.longitude" (mapClick)="onChoseLocation($event)">
+    <agm-marker *ngFor="let foodtruck of foodtrucks | async" [latitude]="foodtruck.location.latitude" [longitude]="foodtruck.location.longitude"></agm-marker>
   </agm-map>
 
   <div class="list">
@@ -14,10 +14,11 @@
       </figure>
       <div class="list__description">
         <h1>{{ foodtruck.name }}</h1>
-        <p>Especialidade: {{ foodtruck.speciality }}</p>
-        <p>Proximidade: {{ foodtruck.distance }}</p>
-        <p *ngIf="foodtruck.isOpen">Aberto</p>
-        <p *ngIf="!foodtruck.isOpen">Fechado</p>
+        <p><span>Especialidade:</span> {{ foodtruck.speciality }}</p>
+        <p *ngIf="foodtruck.location.distance == 0"><span>Proximidade:</span> Menos de 1 km</p>
+        <p *ngIf="foodtruck.location.distance > 0"><span>Proximidade:</span> {{ foodtruck.location.distance }} km</p>
+        <p class="list__description--open" *ngIf="foodtruck.isOpen">Aberto</p>
+        <p class="list__description--false" *ngIf="!foodtruck.isOpen">Fechado</p>
       </div>
     </div>
 

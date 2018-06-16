@@ -2,7 +2,7 @@ import { Component } from '@angular/core'
 import { NavController, NavParams } from 'ionic-angular'
 import { User } from '../../models'
 
-import { UserProvider } from '../../providers/user'
+import { UserProvider } from '../../providers'
 
 @Component({
   selector: 'page-settings',

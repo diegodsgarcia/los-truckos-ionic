@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
 import { NavController, NavParams } from 'ionic-angular'
-import { Foodtruck } from '../../models';
+import { Foodtruck } from '../../models'
 
 @Component({
   selector: 'page-description',
