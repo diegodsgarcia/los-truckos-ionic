@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Cadastrar foodtrucks</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Cadastrar foodtrucks</h1>
+
+    <div class="input">
+      <input type="text" placeholder="Nome do foodtruck" />
+    </div>
+    <div class="input">
+      <input type="text" placeholder="Dono do foodtruck" />
+    </div>
+    <div class="input">
+      <select>
+        <option value="true">Sim</option>
+        <option value="false">Nao</option>
+      </select>
+    </div>
+    <div class="input">
+      <input type="text" placeholder="Especialidade" />
+    </div>
+    <div class="input">
+      <input type="text" placeholder="Logo" />
+    </div>
+    <div class="input">
+      <input type="text" placeholder="Latitude" />
+    </div>
+    <div class="input">
+      <input type="text" placeholder="Longitude" />
+    </div>
+    <div class="input">
+      <input type="text" placeholder="Telefone" />
+    </div>
+    <div class="input">
+      <input type="text" placeholder="Email" />
+    </div>
+    <div class="input">
+      <input type="text" placeholder="Facebook" />
+    </div>
+    <div class="input">
+      <input type="text" placeholder="Instagram" />
+    </div>
+    <button class="register">Cadastrar foodtruck</button>
+
+    <div class="table-responsive">
+      <table class="foodtrucks">
+        <thead>
+          <tr>
+            <th>Email</th>
+            <th>Facebook</th>
+            <th>Instagram</th>
+            <th>Aberto</th>
+            <th>Latitude</th>
+            <th>Logo</th>
+            <th>Longitude</th>
+            <th>Nome</th>
+            <th>Dono</th>
+            <th>Telefone</th>
+            <th>Especialidade</th>
+            <th>Key</th>
+            <th>Apagar</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</body>
+
+<script>
+  const config = {
+    apiKey: "AIzaSyBsPZBgqFQ8pv4OHNt778nHEuw8RQkbqbM",
+    authDomain: "lostruckos.firebaseapp.com",
+    databaseURL: "https://lostruckos.firebaseio.com",
+    projectId: "lostruckos",
+    storageBucket: "lostruckos.appspot.com",
+    messagingSenderId: "552193187403"
+  };
+  firebase.initializeApp(config)
+
+  const inputs = Array.from(document.querySelectorAll('input'))
+  const select = document.querySelector('select')
+  const foodtrucksList = document.querySelector('.foodtrucks tbody')
+  const button = document.querySelector('.register')
+  getFoodtrucks()
+
+  class Foodtruck {
+    constructor(name, owner, isOpen, speciality, logo, latitude, longitude, phone, email, facebook, instagram) {
+      this.name = name
+      this.owner = owner
+      this.isOpen = isOpen
+      this.speciality = speciality
+      this.logo = logo
+      this.latitude = latitude,
+      this.longitude = longitude,
+      this.phone = phone
+      this.email = email
+      this.facebook = facebook
+      this.instagram = instagram
+    }
+  }
+
+  function registerFoodtruck(foodtruck) {
+    const ref = firebase.database().ref('/foodtrucks').push()
+    ref.set(foodtruck)
+  }
+
+  function getFoodtrucks() {
+    const ref = firebase.database().ref('/foodtrucks')
+
+    ref.on('value', (snapshot) => {
+      const datas = []
+      snapshot.forEach((data) => {
+        const item = data.val()
+        item.key = data.key
+        datas.push(item)
+      })
+
+      updateFoodtruckHTML(datas)
+    })
+  }
+
+  function deleteFoodtruck(key) {
+    const ref = firebase.database().ref(`/foodtrucks/${key}`)
+    ref.remove()
+  }
+
+  function createAFoodtruck() {
+    const values = inputs.map(input => input.value)
+
+    if(values.includes('')) return null
+
+    const foodtruck = new Foodtruck(
+      values[0],
+      values[1],
+      select.value,
+      values[2],
+      values[3],
+      values[4],
+      values[5],
+      values[6],
+      values[7],
+      values[8],
+      values[9]
+    )
+
+    return foodtruck
+  }
+
+  function cleanInputs() {
+    inputs.forEach(input => input.value = '')
+  }
+
+  function updateFoodtruckHTML(datas) {
+    const list = datas.map((data) => {
+      const values = Object.values(data)
+      const tds = values.map((value) => `<td>${value}</td>`)
+
+      tds.push(`<td><a onclick="deleteFoodtruck('${values[values.length - 1]}')">Apagar</a></td>`)
+
+      return `<tr>${tds.join('')}</tr>`
+    })
+
+
+    foodtrucksList.innerHTML = list.join('')
+  }
+
+  button.onclick = () => {
+    const foodtruck = createAFoodtruck()
+    if(foodtruck) {
+      registerFoodtruck(foodtruck)
+      cleanInputs()
+      alert('Foodtruck registrado com sucesso!')
+    } else {
+      alert('Digite todos os campos!')
+    }
+  }
+</script>
+</html>
