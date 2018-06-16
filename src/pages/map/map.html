@@ -2,14 +2,14 @@
 <ion-content>
   <ion-searchbar #searchbar class="searchbar" (click)="openList(searchbar)"></ion-searchbar>
   <agm-map [latitude]="latitude" [longitude]="longitude" (mapClick)="onChoseLocation($event)">
-    <agm-marker *ngFor="let foodtruck of foodtrucks" [latitude]="foodtruck.latitude" [longitude]="foodtruck.longitude"></agm-marker>
+    <agm-marker *ngFor="let foodtruck of foodtrucks | async" [latitude]="foodtruck.latitude" [longitude]="foodtruck.longitude"></agm-marker>
   </agm-map>
 
   <div class="list">
     <button class="list__close" (click)="closeList()"></button>
 
-    <div *ngFor="let foodtruck of foodtrucks" (click)="openDescription(foodtruck)" class="list__item">
-      <figure>
+    <div *ngFor="let foodtruck of foodtrucks | async" (click)="openDescription(foodtruck)" class="list__item">
+      <figure class="list__image">
         <img [src]="foodtruck.logo" [alt]="foodtruck.name" [title]="foodtruck.name">
       </figure>
       <div class="list__description">
