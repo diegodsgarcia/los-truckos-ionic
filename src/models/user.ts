@@ -4,7 +4,6 @@ export class User {
   constructor(
     public name: string,
     public email: string,
-    public image?: string,
-    public location?: Location,
+    public image?: string
   ) {}
 }

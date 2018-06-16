@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms'
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular'
 import { SplashScreen } from '@ionic-native/splash-screen'
 import { StatusBar } from '@ionic-native/status-bar'
+import { Geolocation } from '@ionic-native/geolocation'
 
 // Firebase
 import { AngularFireModule } from 'angularfire2'
@@ -55,6 +56,7 @@ import { DescriptionPage } from '../pages/description/description';
     SettingsPage,
   ],
   providers: [
+    Geolocation,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},

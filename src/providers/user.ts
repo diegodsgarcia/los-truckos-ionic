@@ -1,26 +1,35 @@
-import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Geolocation } from '@ionic-native/geolocation'
+import { AngularFireAuth } from 'angularfire2/auth'
 
-import { Location } from '../models'
+import { Location, User } from '../models'
 
 
 @Injectable()
 export class UserProvider {
 
   constructor(
-    public http: HttpClient,
-    public geolocation: Geolocation
-  ) {
+    private afAuth: AngularFireAuth,
+    private geolocation: Geolocation
+  ) {}
 
+  get user() {
+    return new User(
+      this.afAuth.auth.currentUser.displayName,
+      this.afAuth.auth.currentUser.email,
+      this.afAuth.auth.currentUser.photoURL,
+    )
   }
 
-  getLocation() {
-    return new Promise((resolve, reject) => {
+  getLocation(): Promise<Location> {
+    return new Promise(resolve => {
       this.geolocation.getCurrentPosition().then((pos) => {
         resolve(new Location(pos.coords.latitude, pos.coords.longitude, '1'))
       })
     })
   }
 
+  signOut() {
+    this.afAuth.auth.signOut()
+  }
 }
