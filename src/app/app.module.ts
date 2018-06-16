@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms'
 
 // Ionic
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular'
+import { GooglePlus } from '@ionic-native/google-plus'
 import { SplashScreen } from '@ionic-native/splash-screen'
 import { StatusBar } from '@ionic-native/status-bar'
 import { Geolocation } from '@ionic-native/geolocation'
@@ -59,6 +60,7 @@ import { FoodtruckProvider } from '../providers'
     SettingsPage,
   ],
   providers: [
+    GooglePlus,
     FoodtruckProvider,
     Geolocation,
     StatusBar,

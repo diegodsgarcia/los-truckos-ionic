@@ -2,7 +2,13 @@
 <ion-content>
   <ion-searchbar #searchbar class="searchbar" (click)="openList(searchbar)"></ion-searchbar>
   <agm-map [zoom]="14" [latitude]="(currentLocation | async)?.latitude" [longitude]="(currentLocation | async)?.longitude" (mapClick)="onChoseLocation($event)">
-    <agm-marker *ngFor="let foodtruck of foodtrucks | async" [latitude]="foodtruck.location.latitude" [longitude]="foodtruck.location.longitude"></agm-marker>
+    <agm-marker
+      *ngFor="let foodtruck of foodtrucks | async"
+      [latitude]="foodtruck.location.latitude"
+      [longitude]="foodtruck.location.longitude"
+      [title]="foodtruck.name"
+      (markerClick)="openDescription(foodtruck)">
+    </agm-marker>
   </agm-map>
 
   <div class="list">

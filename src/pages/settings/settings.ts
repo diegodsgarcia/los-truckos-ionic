@@ -1,5 +1,4 @@
 import { Component } from '@angular/core'
-import { NavController, NavParams } from 'ionic-angular'
 import { User } from '../../models'
 
 import { UserProvider } from '../../providers'
@@ -10,12 +9,11 @@ import { UserProvider } from '../../providers'
 })
 export class SettingsPage {
 
-  private user: User
+  user: User
 
   constructor(
-    private userProvider: UserProvider,
-    public navCtrl: NavController,
-    public navParams: NavParams) {}
+    private userProvider: UserProvider
+  ) {}
 
   ionViewDidLoad() {
     this.user = this.userProvider.user

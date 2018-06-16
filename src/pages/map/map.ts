@@ -35,15 +35,6 @@ export class MapPage {
     this.searchbar = this.elementRef.nativeElement.querySelector('.searchbar')
   }
 
-  // calculateLocation(foodtruck: Foodtruck) {
-  //   return new Promise(resolve => {
-  //     this.userProvider.getLocation().then(location => {
-  //       const calculate = this.foodtruckProvider.getDistanceOfFoodtruck(foodtruck, location)
-  //       resolve(calculate)
-  //     })
-  //   })
-  // }
-
   openList() {
     if (!this.list.classList.contains('list--active')) {
       this.list.classList.add('list--active')
@@ -62,7 +53,6 @@ export class MapPage {
   }
 
   openDescription(foodtruck) {
-    console.log(foodtruck)
     this.navCtrl.push(DescriptionPage, { foodtruck })
   }
 
