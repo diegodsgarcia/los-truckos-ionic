@@ -1,4 +1,3 @@
-import { Location } from './index'
 
 export class User {
   constructor(

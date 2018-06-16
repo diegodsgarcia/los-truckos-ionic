@@ -3,7 +3,6 @@ import { NavController, NavParams } from 'ionic-angular'
 import { User } from '../../models'
 
 import { UserProvider } from '../../providers/user'
-import { AngularFireAuth } from 'angularfire2/auth'
 
 @Component({
   selector: 'page-settings',
@@ -14,7 +13,6 @@ export class SettingsPage {
   private user: User
 
   constructor(
-    private afAuth: AngularFireAuth,
     private userProvider: UserProvider,
     public navCtrl: NavController,
     public navParams: NavParams) {}
@@ -23,12 +21,14 @@ export class SettingsPage {
     this.user = this.userProvider.user
 
     this.userProvider.getLocation().then(location => {
-
+      console.log(location)
+    }).catch((error) => {
+      console.log(error)
     })
   }
 
   logout() {
-    this.afAuth.auth.signOut()
+    this.userProvider.signOut()
   }
 
 }
