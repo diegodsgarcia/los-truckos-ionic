@@ -39,11 +39,12 @@ export class UserProvider {
   signInWithGoogle() {
     if (this.platform.is('cordova')) {
       return this.googlePlus.login({
-        'webClientId': firebaseConfig.webClientId
+        'webClientId': firebaseConfig.webClientId,
+        'offline': true
       })
       .then(result => {
         console.log(result)
-        return this.afAuth.auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(result.accessToken))
+        return this.afAuth.auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(result.idToken))
       })
     } else {
       return this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())

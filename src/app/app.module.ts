@@ -8,6 +8,7 @@ import { GooglePlus } from '@ionic-native/google-plus'
 import { SplashScreen } from '@ionic-native/splash-screen'
 import { StatusBar } from '@ionic-native/status-bar'
 import { Geolocation } from '@ionic-native/geolocation'
+import { Keyboard } from '@ionic-native/keyboard'
 
 // Firebase
 import { AngularFireModule } from 'angularfire2'
@@ -63,6 +64,7 @@ import { FoodtruckProvider } from '../providers'
     GooglePlus,
     FoodtruckProvider,
     Geolocation,
+    Keyboard,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},

@@ -1,4 +1,4 @@
-<ion-tabs color="primary">
+<ion-tabs *ngIf="showTabs" color="primary">
   <ion-tab [root]="tabMap" tabTitle="Mapa" tabIcon="map"></ion-tab>
   <ion-tab [root]="tabSettings" tabTitle="Configurações" tabIcon="settings"></ion-tab>
 </ion-tabs>

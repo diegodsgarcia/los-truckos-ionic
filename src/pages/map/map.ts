@@ -6,6 +6,7 @@ import { Foodtruck, Location } from '../../models'
 import { DescriptionPage } from '../description/description'
 
 import { Observable } from 'rxjs'
+import { map } from 'rxjs/operators'
 
 @Component({
   selector: 'page-map',
@@ -16,6 +17,7 @@ export class MapPage {
   currentLocation: Promise<Location>
   list: HTMLElement
   searchbar: HTMLElement
+  searchValue: string
 
   constructor(
     private foodtruckProvider: FoodtruckProvider,
@@ -56,4 +58,20 @@ export class MapPage {
     this.navCtrl.push(DescriptionPage, { foodtruck })
   }
 
+  searchFoodtrucks() {
+    if (this.searchValue) {
+      this.foodtrucks = this.foodtrucks.pipe(
+        map(foodtrucks => {
+          return foodtrucks.filter(foodtruck => {
+            return foodtruck.name.toLocaleLowerCase().includes(this.searchValue.toLocaleLowerCase())
+          })
+        })
+      )
+
+    } else {
+      this.currentLocation.then(location => {
+        this.foodtrucks = this.foodtruckProvider.getFoodtrucks(location)
+      })
+    }
+  }
 }

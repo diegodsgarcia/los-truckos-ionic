@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { NavController, NavParams } from 'ionic-angular'
+import { Keyboard } from '@ionic-native/keyboard'
 
 import { MapPage } from '../map/map'
 import { SettingsPage } from '../settings/settings'
@@ -12,11 +12,13 @@ export class TabsPage {
 
   tabMap: any = MapPage
   tabSettings: any = SettingsPage
+  showTabs: boolean = true
 
-  constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams) {}
+  constructor(private keyboard: Keyboard) {}
 
-  ionViewDidLoad() {}
+  ionViewDidLoad() {
+    this.keyboard.onKeyboardShow().subscribe((keyboard) => this.showTabs = false)
+    this.keyboard.onKeyboardHide().subscribe((keyboard) => this.showTabs = true)
+  }
 
 }
