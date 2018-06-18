@@ -12,71 +12,74 @@
 <body>
   <div class="container">
     <h1>Cadastrar foodtrucks</h1>
+    <div class="row">
+      <div class="form">
+        <div class="input">
+          <input type="text" placeholder="Nome do foodtruck" />
+        </div>
+        <div class="input">
+          <input type="text" placeholder="Dono do foodtruck" />
+        </div>
+        <div class="input">
+          <select>
+            <option value="true">Sim</option>
+            <option value="false">Nao</option>
+          </select>
+        </div>
+        <div class="input">
+          <input type="text" placeholder="Especialidade" />
+        </div>
+        <div class="input">
+          <input type="text" placeholder="Logo" />
+        </div>
+        <div class="input">
+          <input type="text" placeholder="Latitude" />
+        </div>
+        <div class="input">
+          <input type="text" placeholder="Longitude" />
+        </div>
+        <div class="input">
+          <input type="text" placeholder="Telefone" />
+        </div>
+        <div class="input">
+          <input type="text" placeholder="Email" />
+        </div>
+        <div class="input">
+          <input type="text" placeholder="Facebook" />
+        </div>
+        <div class="input">
+          <input type="text" placeholder="Instagram" />
+        </div>
+        <button class="register">Cadastrar foodtruck</button>
+      </div>
 
-    <div class="input">
-      <input type="text" placeholder="Nome do foodtruck" />
-    </div>
-    <div class="input">
-      <input type="text" placeholder="Dono do foodtruck" />
-    </div>
-    <div class="input">
-      <select>
-        <option value="true">Sim</option>
-        <option value="false">Nao</option>
-      </select>
-    </div>
-    <div class="input">
-      <input type="text" placeholder="Especialidade" />
-    </div>
-    <div class="input">
-      <input type="text" placeholder="Logo" />
-    </div>
-    <div class="input">
-      <input type="text" placeholder="Latitude" />
-    </div>
-    <div class="input">
-      <input type="text" placeholder="Longitude" />
-    </div>
-    <div class="input">
-      <input type="text" placeholder="Telefone" />
-    </div>
-    <div class="input">
-      <input type="text" placeholder="Email" />
-    </div>
-    <div class="input">
-      <input type="text" placeholder="Facebook" />
-    </div>
-    <div class="input">
-      <input type="text" placeholder="Instagram" />
-    </div>
-    <button class="register">Cadastrar foodtruck</button>
+      <div class="table-responsive">
+        <table class="foodtrucks">
+          <thead>
+            <tr>
+              <th>Email</th>
+              <th>Facebook</th>
+              <th>Instagram</th>
+              <th>Aberto</th>
+              <th>Latitude</th>
+              <th>Logo</th>
+              <th>Longitude</th>
+              <th>Nome</th>
+              <th>Dono</th>
+              <th>Telefone</th>
+              <th>Especialidade</th>
+              <th>Key</th>
+              <th>Apagar</th>
+            </tr>
+          </thead>
+          <tbody>
 
-    <div class="table-responsive">
-      <table class="foodtrucks">
-        <thead>
-          <tr>
-            <th>Email</th>
-            <th>Facebook</th>
-            <th>Instagram</th>
-            <th>Aberto</th>
-            <th>Latitude</th>
-            <th>Logo</th>
-            <th>Longitude</th>
-            <th>Nome</th>
-            <th>Dono</th>
-            <th>Telefone</th>
-            <th>Especialidade</th>
-            <th>Key</th>
-            <th>Apagar</th>
-          </tr>
-        </thead>
-        <tbody>
-
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </div>
-
   </div>
+
 </body>
 
 <script>
@@ -187,5 +190,32 @@
       alert('Digite todos os campos!')
     }
   }
+
+  // ============= Scroll table ==============
+  const table = document.querySelector('.table-responsive')
+  let canMove = false
+  let scrollLeft = 0
+  let x = 0
+
+  table.onmousedown = function(e) {
+    canMove = true
+    scrollLeft = this.scrollLeft
+    x = e.clientX
+  }
+
+  table.onmouseup = function() {
+    canMove = false
+  }
+
+  table.onmouseleave = function() {
+    canMove = false
+  }
+
+  table.onmousemove = function(e) {
+    if(canMove) {
+      this.scrollLeft = scrollLeft + x - e.clientX
+    }
+  }
+
 </script>
 </html>
