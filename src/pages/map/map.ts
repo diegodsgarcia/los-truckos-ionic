@@ -17,6 +17,8 @@ export class MapPage {
   currentLocation: Promise<Location>
   list: HTMLElement
   searchbar: HTMLElement
+  tabbar: HTMLElement
+  scrollContent: HTMLElement
   searchValue: string
 
   constructor(
@@ -35,12 +37,16 @@ export class MapPage {
   ionViewDidLoad() {
     this.list = this.elementRef.nativeElement.querySelector('.list')
     this.searchbar = this.elementRef.nativeElement.querySelector('.searchbar')
+    this.tabbar = document.querySelector('.tabbar')
+    this.scrollContent = document.querySelector('.scroll-content')
   }
 
   openList() {
     if (!this.list.classList.contains('list--active')) {
       this.list.classList.add('list--active')
       this.searchbar.classList.add('searchbar--active')
+      this.tabbar.classList.add('tabbar-hidden')
+      this.scrollContent.classList.add('scroll-content--full')
     }
   }
 
@@ -48,6 +54,8 @@ export class MapPage {
     if (this.list.classList.contains('list--active')) {
       this.list.classList.remove('list--active')
       this.searchbar.classList.remove('searchbar--active')
+      this.tabbar.classList.remove('tabbar-hidden')
+      this.scrollContent.classList.remove('scroll-content--full')
     }
   }
 

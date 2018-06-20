@@ -18,13 +18,11 @@ page-map {
 
 .list {
   background-color: #ffffff;
-  display: flex;
-  height: 100vh;
-  flex-direction: column;
+  height: 100%;
   position: absolute;
   width: 100vw;
-  transform: translateY(100%);
   top: 42px;
+  transform: translateY(100%);
   transition: .5s transform ease-in-out;
 
   &--active {
@@ -35,17 +33,18 @@ page-map {
     $size: 20px;
     background-color: transparent;
     height: $size;
-    right: 10px;
+    right: 0;
     padding: 0;
     position: absolute;
     top: 10px;
-    width: $size;
+    width: calc(#{$size} + 10px);
     &:after, &:before {
       content: "";
       background-color: #000;
       display: block;
       height: 3px;
       top: 9px;
+      right: 10px;
       position: absolute;
       width: $size;
     }

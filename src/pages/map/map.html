@@ -16,6 +16,11 @@
       [title]="foodtruck.name"
       (markerClick)="openDescription(foodtruck)">
     </agm-marker>
+    <agm-marker
+      [latitude]="(currentLocation | async)?.latitude"
+      [longitude]="(currentLocation | async)?.longitude"
+      [title]="'Você está aqui!'">
+    </agm-marker>
   </agm-map>
 
   <div class="list">

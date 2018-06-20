@@ -14,3 +14,19 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+.scroll-content {
+  transition: margin-bottom .4s ease-out;
+}
+
+.show-tabbar {
+  transition: transform .4s ease-out;
+}
+
+.scroll-content--full {
+  margin-bottom: 0 !important;
+}
+
+.tabbar-hidden {
+  transform: translateY(56px);
+}
