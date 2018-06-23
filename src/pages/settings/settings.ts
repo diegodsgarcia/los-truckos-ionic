@@ -17,12 +17,6 @@ export class SettingsPage {
 
   ionViewDidLoad() {
     this.user = this.userProvider.user
-
-    this.userProvider.getLocation().then(location => {
-      console.log(location)
-    }).catch((error) => {
-      console.log(error)
-    })
   }
 
   logout() {

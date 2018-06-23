@@ -24,16 +24,16 @@
         <span *ngIf="!foodtruck.isOpen">Não</span>
       </p>
       <div class="description__social">
-        <ion-icon name="phone"></ion-icon>
-        <ion-icon name="email"></ion-icon>
-        <ion-icon name="facebook"></ion-icon>
-        <ion-icon name="instagram"></ion-icon>
+        <a href="tel:{{foodtruck.phone}}"><ion-icon name="call"></ion-icon></a>
+        <a href="mailto:{{foodtruck.email}}"><ion-icon name="mail"></ion-icon></a>
+        <a href="https://facebook.com/{{ foodtruck.facebook }}" target="_blank"><ion-icon name="logo-facebook"></ion-icon></a>
+        <a href="https://instagram.com/{{ foodtruck.instagram }}" target="_blank"><ion-icon name="logo-instagram"></ion-icon></a>
       </div>
     </div>
   </div>
 
   <div class="description__find">
-    <button ion-button full>Traçar rota</button>
+    <button ion-button full (click)="makeRoute()">Traçar rota</button>
   </div>
 
 

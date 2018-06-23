@@ -21,7 +21,17 @@ page-description {
   }
 }
 
+.description__social ion-icon {
+  font-size: 22px;
+  margin: 0 5px;
+}
+
 .description__find {
+  margin: 20px 0;
   padding: 0 10px;
+
+  button {
+    text-transform: uppercase;
+  }
 }
 

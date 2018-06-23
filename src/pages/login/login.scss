@@ -1,11 +1,12 @@
 page-login {
 
   .content {
-    background-color: map-get($colors, primary);
+    background-color: #ffffff;
   }
 
   .button-ios-google, .button-md-google {
-    color: map-get($colors, primary);
+    background-color: map-get($colors, primary);
+    color: #ffffff;
   }
 
   img {

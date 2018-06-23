@@ -88,4 +88,8 @@
         <variable name="REVERSED_CLIENT_ID" value="552193187403-petir4vei4i0rq2ili8i4pft7o71k2e7.apps.googleusercontent.com" />
     </plugin>
     <allow-navigation href="http://192.168.1.33:8100" />
+    <plugin name="uk.co.workingedge.phonegap.plugin.launchnavigator" spec="^4.2.1">
+        <variable name="OKHTTP_VERSION" value="3.+" />
+    </plugin>
+    <engine name="ios" spec="~4.5.4" />
 </widget>

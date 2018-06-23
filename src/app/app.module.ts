@@ -3,8 +3,9 @@ import { ErrorHandler, NgModule } from '@angular/core'
 import { FormsModule } from '@angular/forms'
 
 // Ionic
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular'
 import { GooglePlus } from '@ionic-native/google-plus'
+import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular'
+import { LaunchNavigator } from '@ionic-native/launch-navigator'
 import { SplashScreen } from '@ionic-native/splash-screen'
 import { StatusBar } from '@ionic-native/status-bar'
 import { Geolocation } from '@ionic-native/geolocation'
@@ -60,9 +61,10 @@ import { FoodtruckProvider } from '../providers'
     SettingsPage,
   ],
   providers: [
+    Geolocation,
     GooglePlus,
     FoodtruckProvider,
-    Geolocation,
+    LaunchNavigator,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
