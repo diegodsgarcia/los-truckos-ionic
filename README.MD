@@ -1,4 +1,4 @@
-#Los Truckos
+# Los Truckos
 
 Protótipo do Aplicativo de encontro de Food Trucks, desenvolvido em Ionic.
 
@@ -8,4 +8,4 @@ Protótipo do Aplicativo de encontro de Food Trucks, desenvolvido em Ionic.
 
 Para cadastrar os Food Trucks, você pode entrar no `register-foodtrucks/index.html`
 
-<img src="https://image.ibb.co/izcczo/foodtruck_cadastro.jpg" width="300">
+<img src="https://image.ibb.co/izcczo/foodtruck_cadastro.jpg" width="600">
